@@ -1,40 +1,33 @@
 -- UI Library (สร้าง GUI)
 local ScreenGui = Instance.new("ScreenGui")
-local Frame = Instance.new("Frame")
-local ToggleButton = Instance.new("TextButton")
-local SpeedLabel = Instance.new("TextLabel")
-local SpeedSlider = Instance.new("TextBox")
-local ShowHideButton = Instance.new("TextButton") -- ปุ่มซ่อน/แสดง UI
+local MainFrame = Instance.new("Frame")
+local TabFrame = Instance.new("Frame")
+local CharacterTab = Instance.new("TextButton")
+local WorldTab = Instance.new("TextButton")
+local CharacterPage = Instance.new("Frame")
+local WorldPage = Instance.new("Frame")
 
--- ใส่ GUI ลงใน Player
+-- ปุ่ม UI Toggle
+local ShowHideButton = Instance.new("TextButton")
+
+-- องค์ประกอบใน Character Tab
+local SpeedLabel = Instance.new("TextLabel")
+local SpeedBox = Instance.new("TextBox")
+local KillAuraToggle = Instance.new("TextButton")
+local AttackDelayLabel = Instance.new("TextLabel")
+local AttackDelayBox = Instance.new("TextBox")
+
+-- องค์ประกอบใน World Tab
+local ShowNPCButton = Instance.new("TextButton")
+
+-- ตั้งค่า UI หลัก
 ScreenGui.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
 
--- Frame หลักของ UI
-Frame.Parent = ScreenGui
-Frame.Size = UDim2.new(0, 200, 0, 150)
-Frame.Position = UDim2.new(0.5, -100, 0.5, -75)
-Frame.BackgroundColor3 = Color3.fromRGB(50, 50, 50)
-Frame.BorderSizePixel = 2
-
--- ปุ่มเปิด/ปิด Auto Attack
-ToggleButton.Parent = Frame
-ToggleButton.Size = UDim2.new(0, 180, 0, 50)
-ToggleButton.Position = UDim2.new(0, 10, 0, 10)
-ToggleButton.BackgroundColor3 = Color3.fromRGB(100, 255, 100)
-ToggleButton.Text = "Auto Attack: OFF"
-
--- Label ความเร็วการโจมตี
-SpeedLabel.Parent = Frame
-SpeedLabel.Size = UDim2.new(0, 180, 0, 20)
-SpeedLabel.Position = UDim2.new(0, 10, 0, 70)
-SpeedLabel.Text = "Attack Speed (Sec):"
-
--- ช่องให้ใส่ค่าดีเลย์
-SpeedSlider.Parent = Frame
-SpeedSlider.Size = UDim2.new(0, 180, 0, 30)
-SpeedSlider.Position = UDim2.new(0, 10, 0, 95)
-SpeedSlider.Text = "0.1"
-SpeedSlider.BackgroundColor3 = Color3.fromRGB(200, 200, 200)
+MainFrame.Parent = ScreenGui
+MainFrame.Size = UDim2.new(0, 300, 0, 250)
+MainFrame.Position = UDim2.new(0.5, -150, 0.5, -125)
+MainFrame.BackgroundColor3 = Color3.fromRGB(20, 20, 20)
+MainFrame.Visible = true
 
 -- ปุ่ม Show/Hide UI
 ShowHideButton.Parent = ScreenGui
@@ -43,12 +36,98 @@ ShowHideButton.Position = UDim2.new(0, 10, 0, 10)
 ShowHideButton.BackgroundColor3 = Color3.fromRGB(255, 165, 0)
 ShowHideButton.Text = "⚙️"
 
--- Auto Attack Variables
+-- Tab Bar
+TabFrame.Parent = MainFrame
+TabFrame.Size = UDim2.new(1, 0, 0, 30)
+TabFrame.BackgroundColor3 = Color3.fromRGB(50, 50, 50)
+
+CharacterTab.Parent = TabFrame
+CharacterTab.Size = UDim2.new(0.5, 0, 1, 0)
+CharacterTab.Text = "Character"
+CharacterTab.BackgroundColor3 = Color3.fromRGB(80, 80, 80)
+
+WorldTab.Parent = TabFrame
+WorldTab.Size = UDim2.new(0.5, 0, 1, 0)
+WorldTab.Position = UDim2.new(0.5, 0, 0, 0)
+WorldTab.Text = "World"
+WorldTab.BackgroundColor3 = Color3.fromRGB(80, 80, 80)
+
+-- Character Tab Page
+CharacterPage.Parent = MainFrame
+CharacterPage.Size = UDim2.new(1, 0, 1, -30)
+CharacterPage.Position = UDim2.new(0, 0, 0, 30)
+CharacterPage.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
+
+SpeedLabel.Parent = CharacterPage
+SpeedLabel.Size = UDim2.new(0, 280, 0, 20)
+SpeedLabel.Position = UDim2.new(0, 10, 0, 10)
+SpeedLabel.Text = "Speed Multiplier:"
+
+SpeedBox.Parent = CharacterPage
+SpeedBox.Size = UDim2.new(0, 280, 0, 30)
+SpeedBox.Position = UDim2.new(0, 10, 0, 35)
+SpeedBox.Text = "1"
+
+KillAuraToggle.Parent = CharacterPage
+KillAuraToggle.Size = UDim2.new(0, 280, 0, 50)
+KillAuraToggle.Position = UDim2.new(0, 10, 0, 75)
+KillAuraToggle.BackgroundColor3 = Color3.fromRGB(100, 255, 100)
+KillAuraToggle.Text = "Kill Aura: OFF"
+
+AttackDelayLabel.Parent = CharacterPage
+AttackDelayLabel.Size = UDim2.new(0, 280, 0, 20)
+AttackDelayLabel.Position = UDim2.new(0, 10, 0, 130)
+AttackDelayLabel.Text = "Attack Delay:"
+
+AttackDelayBox.Parent = CharacterPage
+AttackDelayBox.Size = UDim2.new(0, 280, 0, 30)
+AttackDelayBox.Position = UDim2.new(0, 10, 0, 155)
+AttackDelayBox.Text = "0.1"
+
+-- World Tab Page
+WorldPage.Parent = MainFrame
+WorldPage.Size = UDim2.new(1, 0, 1, -30)
+WorldPage.Position = UDim2.new(0, 0, 0, 30)
+WorldPage.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
+WorldPage.Visible = false
+
+ShowNPCButton.Parent = WorldPage
+ShowNPCButton.Size = UDim2.new(0, 280, 0, 50)
+ShowNPCButton.Position = UDim2.new(0, 10, 0, 10)
+ShowNPCButton.BackgroundColor3 = Color3.fromRGB(255, 100, 100)
+ShowNPCButton.Text = "Show All NPCs"
+
+-- ฟังก์ชันเปิดปิด UI
+ShowHideButton.MouseButton1Click:Connect(function()
+    MainFrame.Visible = not MainFrame.Visible
+    ShowHideButton.Text = MainFrame.Visible and "⚙️" or "🔲"
+end)
+
+-- ฟังก์ชันสลับแท็บ
+CharacterTab.MouseButton1Click:Connect(function()
+    CharacterPage.Visible = true
+    WorldPage.Visible = false
+end)
+
+WorldTab.MouseButton1Click:Connect(function()
+    CharacterPage.Visible = false
+    WorldPage.Visible = true
+end)
+
+-- ฟังก์ชันเปลี่ยนความเร็วตัวละคร
+SpeedBox.FocusLost:Connect(function()
+    local newSpeed = tonumber(SpeedBox.Text)
+    if newSpeed and newSpeed > 0 then
+        game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = 16 * newSpeed
+    else
+        SpeedBox.Text = "1"
+    end
+end)
+
+-- Kill Aura (ตีออโต้)
 local autoAttack = false
 local attackSpeed = 0.1
-local uiVisible = true -- UI เริ่มต้นเป็นเปิด
 
--- ฟังก์ชัน Auto Attack Loop
 local function AutoAttack()
     while autoAttack do
         local player = game.Players.LocalPlayer
@@ -56,36 +135,36 @@ local function AutoAttack()
         local tool = character:FindFirstChildOfClass("Tool")
 
         if tool then
-            tool:Activate() -- โจมตี
+            tool:Activate()
         end
-        task.wait(attackSpeed) -- ใช้ค่าดีเลย์ที่กำหนด
+        task.wait(attackSpeed)
     end
 end
 
--- ปุ่มเปิด/ปิด Auto Attack
-ToggleButton.MouseButton1Click:Connect(function()
+KillAuraToggle.MouseButton1Click:Connect(function()
     autoAttack = not autoAttack
-    ToggleButton.Text = autoAttack and "Auto Attack: ON" or "Auto Attack: OFF"
-    ToggleButton.BackgroundColor3 = autoAttack and Color3.fromRGB(255, 100, 100) or Color3.fromRGB(100, 255, 100)
+    KillAuraToggle.Text = autoAttack and "Kill Aura: ON" or "Kill Aura: OFF"
+    KillAuraToggle.BackgroundColor3 = autoAttack and Color3.fromRGB(255, 100, 100) or Color3.fromRGB(100, 255, 100)
 
     if autoAttack then
         AutoAttack()
     end
 end)
 
--- อัปเดต Attack Speed จาก TextBox
-SpeedSlider.FocusLost:Connect(function()
-    local newSpeed = tonumber(SpeedSlider.Text)
-    if newSpeed and newSpeed >= 0 then
-        attackSpeed = newSpeed
+AttackDelayBox.FocusLost:Connect(function()
+    local newDelay = tonumber(AttackDelayBox.Text)
+    if newDelay and newDelay >= 0 then
+        attackSpeed = newDelay
     else
-        SpeedSlider.Text = tostring(attackSpeed) -- คืนค่าเดิมถ้าใส่ค่าผิด
+        AttackDelayBox.Text = "0.1"
     end
 end)
 
--- ปุ่ม Show/Hide UI
-ShowHideButton.MouseButton1Click:Connect(function()
-    uiVisible = not uiVisible
-    Frame.Visible = uiVisible -- แสดง/ซ่อน UI หลัก
-    ShowHideButton.Text = uiVisible and "⚙️" or "🔲" -- เปลี่ยนไอคอนปุ่ม
+-- ฟังก์ชันแสดง NPC
+ShowNPCButton.MouseButton1Click:Connect(function()
+    for _, npc in pairs(workspace:GetChildren()) do
+        if npc:IsA("Model") and npc:FindFirstChild("Humanoid") then
+            npc.Head.BrickColor = BrickColor.new("Bright red") -- เปลี่ยนสีหัว NPC
+        end
+    end
 end)
