@@ -1,21 +1,20 @@
 -- UI Library (สร้าง GUI)
 local ScreenGui = Instance.new("ScreenGui")
 local MainFrame = Instance.new("Frame")
+local TopBar = Instance.new("Frame")
+local MinimizeButton = Instance.new("TextButton")
+local CloseButton = Instance.new("TextButton")
 local TabFrame = Instance.new("Frame")
 local CharacterTab = Instance.new("TextButton")
 local WorldTab = Instance.new("TextButton")
 local CharacterPage = Instance.new("Frame")
 local WorldPage = Instance.new("Frame")
 
--- ปุ่ม UI Toggle
-local ShowHideButton = Instance.new("TextButton")
-
 -- องค์ประกอบใน Character Tab
 local SpeedLabel = Instance.new("TextLabel")
 local SpeedBox = Instance.new("TextBox")
 local KillAuraToggle = Instance.new("TextButton")
 local StopButton = Instance.new("TextButton")
-local ExitButton = Instance.new("TextButton")  -- ปุ่ม Exit
 local AttackDelayLabel = Instance.new("TextLabel")
 local AttackDelayBox = Instance.new("TextBox")
 
@@ -28,19 +27,34 @@ ScreenGui.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
 MainFrame.Parent = ScreenGui
 MainFrame.Size = UDim2.new(0, 300, 0, 250)
 MainFrame.Position = UDim2.new(0.5, -150, 0.5, -125)
-MainFrame.BackgroundColor3 = Color3.fromRGB(20, 20, 20)
+MainFrame.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
 MainFrame.Visible = true
 
--- ปุ่ม Show/Hide UI
-ShowHideButton.Parent = ScreenGui
-ShowHideButton.Size = UDim2.new(0, 50, 0, 50)
-ShowHideButton.Position = UDim2.new(0, 10, 0, 10)
-ShowHideButton.BackgroundColor3 = Color3.fromRGB(255, 165, 0)
-ShowHideButton.Text = "⚙️"
+-- Top Bar
+TopBar.Parent = MainFrame
+TopBar.Size = UDim2.new(1, 0, 0, 30)
+TopBar.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
+
+MinimizeButton.Parent = TopBar
+MinimizeButton.Size = UDim2.new(0, 30, 1, 0)
+MinimizeButton.Position = UDim2.new(0, 10, 0, 0)
+MinimizeButton.BackgroundColor3 = Color3.fromRGB(255, 165, 0)
+MinimizeButton.Text = "–"
+MinimizeButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+MinimizeButton.TextSize = 18
+
+CloseButton.Parent = TopBar
+CloseButton.Size = UDim2.new(0, 30, 1, 0)
+CloseButton.Position = UDim2.new(1, -40, 0, 0)
+CloseButton.BackgroundColor3 = Color3.fromRGB(255, 0, 0)
+CloseButton.Text = "X"
+CloseButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+CloseButton.TextSize = 18
 
 -- Tab Bar
 TabFrame.Parent = MainFrame
 TabFrame.Size = UDim2.new(1, 0, 0, 30)
+TabFrame.Position = UDim2.new(0, 0, 0, 30)
 TabFrame.BackgroundColor3 = Color3.fromRGB(50, 50, 50)
 
 CharacterTab.Parent = TabFrame
@@ -56,8 +70,8 @@ WorldTab.BackgroundColor3 = Color3.fromRGB(80, 80, 80)
 
 -- Character Tab Page
 CharacterPage.Parent = MainFrame
-CharacterPage.Size = UDim2.new(1, 0, 1, -30)
-CharacterPage.Position = UDim2.new(0, 0, 0, 30)
+CharacterPage.Size = UDim2.new(1, 0, 1, -60)
+CharacterPage.Position = UDim2.new(0, 0, 0, 60)
 CharacterPage.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
 
 SpeedLabel.Parent = CharacterPage
@@ -82,12 +96,6 @@ StopButton.Position = UDim2.new(0, 10, 0, 135)
 StopButton.BackgroundColor3 = Color3.fromRGB(255, 0, 0)
 StopButton.Text = "Stop"
 
-ExitButton.Parent = CharacterPage  -- ปุ่ม Exit
-ExitButton.Size = UDim2.new(0, 280, 0, 50)
-ExitButton.Position = UDim2.new(0, 10, 0, 195)
-ExitButton.BackgroundColor3 = Color3.fromRGB(255, 0, 0)
-ExitButton.Text = "Exit"
-
 AttackDelayLabel.Parent = CharacterPage
 AttackDelayLabel.Size = UDim2.new(0, 280, 0, 20)
 AttackDelayLabel.Position = UDim2.new(0, 10, 0, 190)
@@ -100,8 +108,8 @@ AttackDelayBox.Text = "0.1"
 
 -- World Tab Page
 WorldPage.Parent = MainFrame
-WorldPage.Size = UDim2.new(1, 0, 1, -30)
-WorldPage.Position = UDim2.new(0, 0, 0, 30)
+WorldPage.Size = UDim2.new(1, 0, 1, -60)
+WorldPage.Position = UDim2.new(0, 0, 0, 60)
 WorldPage.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
 WorldPage.Visible = false
 
@@ -112,9 +120,12 @@ ShowNPCButton.BackgroundColor3 = Color3.fromRGB(255, 100, 100)
 ShowNPCButton.Text = "Show All NPCs"
 
 -- ฟังก์ชันเปิดปิด UI
-ShowHideButton.MouseButton1Click:Connect(function()
+MinimizeButton.MouseButton1Click:Connect(function()
     MainFrame.Visible = not MainFrame.Visible
-    ShowHideButton.Text = MainFrame.Visible and "⚙️" or "🔲"
+end)
+
+CloseButton.MouseButton1Click:Connect(function()
+    ScreenGui:Destroy()
 end)
 
 -- ฟังก์ชันสลับแท็บ
@@ -186,10 +197,4 @@ ShowNPCButton.MouseButton1Click:Connect(function()
             npc.Head.BrickColor = BrickColor.new("Bright red") -- เปลี่ยนสีหัว NPC
         end
     end
-end)
-
--- ฟังก์ชันปิดโปรแกรม (Exit)
-ExitButton.MouseButton1Click:Connect(function()
-    -- ปิด UI ทั้งหมด
-    ScreenGui:Destroy()
 end)
