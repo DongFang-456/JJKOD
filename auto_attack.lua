@@ -1,4 +1,4 @@
--- UI Library (สร้าง GUI)
+-- สร้าง UI หลัก
 local ScreenGui = Instance.new("ScreenGui")
 local MainFrame = Instance.new("Frame")
 local TopBar = Instance.new("Frame")
@@ -10,142 +10,140 @@ local WorldTab = Instance.new("TextButton")
 local CharacterPage = Instance.new("Frame")
 local WorldPage = Instance.new("Frame")
 
--- องค์ประกอบใน Character Tab
+-- UI Elements ใน Character Tab
 local SpeedLabel = Instance.new("TextLabel")
 local SpeedBox = Instance.new("TextBox")
 local KillAuraToggle = Instance.new("TextButton")
-local StopButton = Instance.new("TextButton")
 local AttackDelayLabel = Instance.new("TextLabel")
 local AttackDelayBox = Instance.new("TextBox")
 
--- องค์ประกอบใน World Tab
+-- UI Elements ใน World Tab
 local ShowNPCButton = Instance.new("TextButton")
 
--- ตั้งค่า UI หลัก
+-- ตั้งค่า ScreenGui
 ScreenGui.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
 
 MainFrame.Parent = ScreenGui
-MainFrame.Size = UDim2.new(0, 350, 0, 350)
-MainFrame.Position = UDim2.new(0.5, -175, 0.5, -175)
-MainFrame.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
-MainFrame.BackgroundTransparency = 0.8
-MainFrame.Visible = true
+MainFrame.Size = UDim2.new(0, 400, 0, 500)
+MainFrame.Position = UDim2.new(0.5, -200, 0.5, -250)
+MainFrame.BackgroundColor3 = Color3.fromRGB(34, 34, 34)
+MainFrame.BackgroundTransparency = 0.85
 MainFrame.BorderSizePixel = 0
 MainFrame.ClipsDescendants = true
+MainFrame.Visible = true
 
--- Top Bar
+-- ตั้งค่า TopBar
 TopBar.Parent = MainFrame
-TopBar.Size = UDim2.new(1, 0, 0, 40)
-TopBar.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
+TopBar.Size = UDim2.new(1, 0, 0, 50)
+TopBar.BackgroundColor3 = Color3.fromRGB(28, 28, 28)
 TopBar.BorderSizePixel = 0
+TopBar.BorderRadius = UDim.new(0, 10)
 
 MinimizeButton.Parent = TopBar
-MinimizeButton.Size = UDim2.new(0, 30, 1, 0)
+MinimizeButton.Size = UDim2.new(0, 40, 1, 0)
 MinimizeButton.Position = UDim2.new(0, 10, 0, 0)
-MinimizeButton.BackgroundColor3 = Color3.fromRGB(255, 165, 0)
+MinimizeButton.BackgroundColor3 = Color3.fromRGB(0, 170, 255)
 MinimizeButton.Text = "–"
 MinimizeButton.TextColor3 = Color3.fromRGB(255, 255, 255)
-MinimizeButton.TextSize = 20
+MinimizeButton.TextSize = 22
 MinimizeButton.BorderSizePixel = 0
+MinimizeButton.BorderRadius = UDim.new(0, 10)
 
 CloseButton.Parent = TopBar
-CloseButton.Size = UDim2.new(0, 30, 1, 0)
-CloseButton.Position = UDim2.new(1, -40, 0, 0)
+CloseButton.Size = UDim2.new(0, 40, 1, 0)
+CloseButton.Position = UDim2.new(1, -50, 0, 0)
 CloseButton.BackgroundColor3 = Color3.fromRGB(255, 0, 0)
 CloseButton.Text = "X"
 CloseButton.TextColor3 = Color3.fromRGB(255, 255, 255)
-CloseButton.TextSize = 20
+CloseButton.TextSize = 22
 CloseButton.BorderSizePixel = 0
+CloseButton.BorderRadius = UDim.new(0, 10)
 
 -- Tab Bar
 TabFrame.Parent = MainFrame
-TabFrame.Size = UDim2.new(1, 0, 0, 40)
-TabFrame.Position = UDim2.new(0, 0, 0, 40)
-TabFrame.BackgroundColor3 = Color3.fromRGB(50, 50, 50)
+TabFrame.Size = UDim2.new(1, 0, 0, 50)
+TabFrame.Position = UDim2.new(0, 0, 0, 50)
+TabFrame.BackgroundColor3 = Color3.fromRGB(60, 60, 60)
 TabFrame.BorderSizePixel = 0
 
 CharacterTab.Parent = TabFrame
 CharacterTab.Size = UDim2.new(0.5, 0, 1, 0)
 CharacterTab.Text = "Character"
-CharacterTab.BackgroundColor3 = Color3.fromRGB(80, 80, 80)
+CharacterTab.BackgroundColor3 = Color3.fromRGB(45, 45, 45)
 CharacterTab.TextColor3 = Color3.fromRGB(255, 255, 255)
 CharacterTab.TextSize = 18
 CharacterTab.BorderSizePixel = 0
+CharacterTab.BorderRadius = UDim.new(0, 10)
 
 WorldTab.Parent = TabFrame
 WorldTab.Size = UDim2.new(0.5, 0, 1, 0)
 WorldTab.Position = UDim2.new(0.5, 0, 0, 0)
 WorldTab.Text = "World"
-WorldTab.BackgroundColor3 = Color3.fromRGB(80, 80, 80)
+WorldTab.BackgroundColor3 = Color3.fromRGB(45, 45, 45)
 WorldTab.TextColor3 = Color3.fromRGB(255, 255, 255)
 WorldTab.TextSize = 18
 WorldTab.BorderSizePixel = 0
+WorldTab.BorderRadius = UDim.new(0, 10)
 
--- Character Tab Page
+-- Character Page
 CharacterPage.Parent = MainFrame
-CharacterPage.Size = UDim2.new(1, 0, 1, -80)
-CharacterPage.Position = UDim2.new(0, 0, 0, 80)
+CharacterPage.Size = UDim2.new(1, 0, 1, -100)
+CharacterPage.Position = UDim2.new(0, 0, 0, 100)
 CharacterPage.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
-CharacterPage.BackgroundTransparency = 0.6
+CharacterPage.BackgroundTransparency = 0.7
 CharacterPage.BorderSizePixel = 0
 CharacterPage.Visible = true
 
 SpeedLabel.Parent = CharacterPage
-SpeedLabel.Size = UDim2.new(0, 300, 0, 20)
+SpeedLabel.Size = UDim2.new(0, 300, 0, 30)
 SpeedLabel.Position = UDim2.new(0.5, -150, 0, 10)
 SpeedLabel.Text = "Speed Multiplier"
 SpeedLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
-SpeedLabel.TextSize = 14
+SpeedLabel.TextSize = 16
 
 SpeedBox.Parent = CharacterPage
 SpeedBox.Size = UDim2.new(0, 300, 0, 30)
 SpeedBox.Position = UDim2.new(0.5, -150, 0, 40)
 SpeedBox.Text = "1"
 SpeedBox.TextColor3 = Color3.fromRGB(255, 255, 255)
-SpeedBox.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
+SpeedBox.BackgroundColor3 = Color3.fromRGB(50, 50, 50)
 SpeedBox.BorderSizePixel = 0
-SpeedBox.TextSize = 14
+SpeedBox.TextSize = 16
+SpeedBox.BorderRadius = UDim.new(0, 5)
 
 KillAuraToggle.Parent = CharacterPage
 KillAuraToggle.Size = UDim2.new(0, 300, 0, 40)
 KillAuraToggle.Position = UDim2.new(0.5, -150, 0, 80)
-KillAuraToggle.BackgroundColor3 = Color3.fromRGB(255, 0, 0)
+KillAuraToggle.BackgroundColor3 = Color3.fromRGB(0, 255, 0)
 KillAuraToggle.Text = "Kill Aura: OFF"
 KillAuraToggle.TextColor3 = Color3.fromRGB(255, 255, 255)
 KillAuraToggle.TextSize = 16
 KillAuraToggle.BorderSizePixel = 0
-
-StopButton.Parent = CharacterPage
-StopButton.Size = UDim2.new(0, 300, 0, 40)
-StopButton.Position = UDim2.new(0.5, -150, 0, 120)
-StopButton.BackgroundColor3 = Color3.fromRGB(0, 255, 0)
-StopButton.Text = "Stop Auto Attack"
-StopButton.TextColor3 = Color3.fromRGB(255, 255, 255)
-StopButton.TextSize = 16
-StopButton.BorderSizePixel = 0
+KillAuraToggle.BorderRadius = UDim.new(0, 5)
 
 AttackDelayLabel.Parent = CharacterPage
-AttackDelayLabel.Size = UDim2.new(0, 300, 0, 20)
-AttackDelayLabel.Position = UDim2.new(0.5, -150, 0, 170)
-AttackDelayLabel.Text = "Attack Delay (Seconds)"
+AttackDelayLabel.Size = UDim2.new(0, 300, 0, 30)
+AttackDelayLabel.Position = UDim2.new(0.5, -150, 0, 150)
+AttackDelayLabel.Text = "Attack Delay (s)"
 AttackDelayLabel.TextColor3 = Color3.fromRGB(255, 255, 255)
-AttackDelayLabel.TextSize = 14
+AttackDelayLabel.TextSize = 16
 
 AttackDelayBox.Parent = CharacterPage
 AttackDelayBox.Size = UDim2.new(0, 300, 0, 30)
-AttackDelayBox.Position = UDim2.new(0.5, -150, 0, 200)
+AttackDelayBox.Position = UDim2.new(0.5, -150, 0, 180)
 AttackDelayBox.Text = "0.1"
 AttackDelayBox.TextColor3 = Color3.fromRGB(255, 255, 255)
-AttackDelayBox.BackgroundColor3 = Color3.fromRGB(40, 40, 40)
+AttackDelayBox.BackgroundColor3 = Color3.fromRGB(50, 50, 50)
 AttackDelayBox.BorderSizePixel = 0
-AttackDelayBox.TextSize = 14
+AttackDelayBox.TextSize = 16
+AttackDelayBox.BorderRadius = UDim.new(0, 5)
 
--- World Tab Page
+-- World Page
 WorldPage.Parent = MainFrame
-WorldPage.Size = UDim2.new(1, 0, 1, -80)
-WorldPage.Position = UDim2.new(0, 0, 0, 80)
+WorldPage.Size = UDim2.new(1, 0, 1, -100)
+WorldPage.Position = UDim2.new(0, 0, 0, 100)
 WorldPage.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
-WorldPage.BackgroundTransparency = 0.6
+WorldPage.BackgroundTransparency = 0.7
 WorldPage.BorderSizePixel = 0
 WorldPage.Visible = false
 
@@ -157,6 +155,7 @@ ShowNPCButton.Text = "Show All NPCs"
 ShowNPCButton.TextColor3 = Color3.fromRGB(255, 255, 255)
 ShowNPCButton.TextSize = 16
 ShowNPCButton.BorderSizePixel = 0
+ShowNPCButton.BorderRadius = UDim.new(0, 5)
 
 -- ฟังก์ชันเปิดปิด UI
 MinimizeButton.MouseButton1Click:Connect(function()
@@ -178,7 +177,7 @@ WorldTab.MouseButton1Click:Connect(function()
     WorldPage.Visible = true
 end)
 
--- ฟังก์ชันเปลี่ยนความเร็วตัวละคร
+-- เปลี่ยนความเร็วตัวละคร
 SpeedBox.FocusLost:Connect(function()
     local newSpeed = tonumber(SpeedBox.Text)
     if newSpeed and newSpeed > 0 then
@@ -188,7 +187,7 @@ SpeedBox.FocusLost:Connect(function()
     end
 end)
 
--- Kill Aura (ตีออโต้)
+-- Kill Aura Toggle
 local autoAttack = false
 local attackSpeed = 0.1
 
@@ -198,12 +197,10 @@ local function AutoAttack()
         local character = player.Character or player.CharacterAdded:Wait()
         local tool = character:FindFirstChildOfClass("Tool")
 
-        -- การโจมตีด้วยอาวุธ
         if tool then
             tool:Activate()
         end
 
-        -- ดีเลย์โจมตี
         task.wait(attackSpeed)
     end
 end
@@ -213,12 +210,12 @@ KillAuraToggle.MouseButton1Click:Connect(function()
     KillAuraToggle.Text = autoAttack and "Kill Aura: ON" or "Kill Aura: OFF"
     KillAuraToggle.BackgroundColor3 = autoAttack and Color3.fromRGB(255, 100, 100) or Color3.fromRGB(100, 255, 100)
 
-    -- เริ่มหรือหยุดการโจมตี
     if autoAttack then
         AutoAttack()
     end
 end)
 
+-- Attack Delay Box
 AttackDelayBox.FocusLost:Connect(function()
     local newDelay = tonumber(AttackDelayBox.Text)
     if newDelay and newDelay >= 0 then
@@ -228,11 +225,11 @@ AttackDelayBox.FocusLost:Connect(function()
     end
 end)
 
--- ฟังก์ชันแสดง NPC
+-- แสดง NPC
 ShowNPCButton.MouseButton1Click:Connect(function()
     for _, npc in pairs(workspace:GetChildren()) do
         if npc:IsA("Model") and npc:FindFirstChild("Humanoid") then
-            npc.Head.BrickColor = BrickColor.new("Bright red") -- เปลี่ยนสีหัว NPC
+            npc.Head.BrickColor = BrickColor.new("Bright red") 
         end
     end
 end)
