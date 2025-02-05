@@ -14,6 +14,8 @@ local ShowHideButton = Instance.new("TextButton")
 local SpeedLabel = Instance.new("TextLabel")
 local SpeedBox = Instance.new("TextBox")
 local KillAuraToggle = Instance.new("TextButton")
+local StopButton = Instance.new("TextButton")
+local ExitButton = Instance.new("TextButton")  -- ปุ่ม Exit
 local AttackDelayLabel = Instance.new("TextLabel")
 local AttackDelayBox = Instance.new("TextBox")
 
@@ -74,14 +76,26 @@ KillAuraToggle.Position = UDim2.new(0, 10, 0, 75)
 KillAuraToggle.BackgroundColor3 = Color3.fromRGB(100, 255, 100)
 KillAuraToggle.Text = "Kill Aura: OFF"
 
+StopButton.Parent = CharacterPage
+StopButton.Size = UDim2.new(0, 280, 0, 50)
+StopButton.Position = UDim2.new(0, 10, 0, 135)
+StopButton.BackgroundColor3 = Color3.fromRGB(255, 0, 0)
+StopButton.Text = "Stop"
+
+ExitButton.Parent = CharacterPage  -- ปุ่ม Exit
+ExitButton.Size = UDim2.new(0, 280, 0, 50)
+ExitButton.Position = UDim2.new(0, 10, 0, 195)
+ExitButton.BackgroundColor3 = Color3.fromRGB(255, 0, 0)
+ExitButton.Text = "Exit"
+
 AttackDelayLabel.Parent = CharacterPage
 AttackDelayLabel.Size = UDim2.new(0, 280, 0, 20)
-AttackDelayLabel.Position = UDim2.new(0, 10, 0, 130)
+AttackDelayLabel.Position = UDim2.new(0, 10, 0, 190)
 AttackDelayLabel.Text = "Attack Delay:"
 
 AttackDelayBox.Parent = CharacterPage
 AttackDelayBox.Size = UDim2.new(0, 280, 0, 30)
-AttackDelayBox.Position = UDim2.new(0, 10, 0, 155)
+AttackDelayBox.Position = UDim2.new(0, 10, 0, 215)
 AttackDelayBox.Text = "0.1"
 
 -- World Tab Page
@@ -172,4 +186,10 @@ ShowNPCButton.MouseButton1Click:Connect(function()
             npc.Head.BrickColor = BrickColor.new("Bright red") -- เปลี่ยนสีหัว NPC
         end
     end
+end)
+
+-- ฟังก์ชันปิดโปรแกรม (Exit)
+ExitButton.MouseButton1Click:Connect(function()
+    -- ปิด UI ทั้งหมด
+    ScreenGui:Destroy()
 end)
