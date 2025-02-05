@@ -127,6 +127,7 @@ end)
 -- Kill Aura (ตีออโต้)
 local autoAttack = false
 local attackSpeed = 0.1
+local attackDelay = 0.1
 
 local function AutoAttack()
     while autoAttack do
@@ -134,9 +135,12 @@ local function AutoAttack()
         local character = player.Character or player.CharacterAdded:Wait()
         local tool = character:FindFirstChildOfClass("Tool")
 
+        -- การโจมตีด้วยอาวุธ
         if tool then
             tool:Activate()
         end
+
+        -- ดีเลย์โจมตี
         task.wait(attackSpeed)
     end
 end
@@ -146,6 +150,7 @@ KillAuraToggle.MouseButton1Click:Connect(function()
     KillAuraToggle.Text = autoAttack and "Kill Aura: ON" or "Kill Aura: OFF"
     KillAuraToggle.BackgroundColor3 = autoAttack and Color3.fromRGB(255, 100, 100) or Color3.fromRGB(100, 255, 100)
 
+    -- เริ่มหรือหยุดการโจมตี
     if autoAttack then
         AutoAttack()
     end
